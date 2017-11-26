@@ -43,22 +43,23 @@ public class UserVo {
     }
 
     public static void main(String[] args) {
-        User user=new User();
+        User user = new User();
         user.setAge(12);
         user.setName("user1");
-        User user1=new User();
+        User user1 = new User();
         user1.setName("userCopy");
         user1.setAge(23);
-        List<User> users=new ArrayList<>();
+        List<User> users = new ArrayList<>();
         users.add(user);
         users.add(user1);
-        List<UserVo> userVos=users.stream().map(UserVo::new).collect(Collectors.toList());
+        List<UserVo> userVos = users.stream().map(UserVo::new).collect(Collectors.toList());
         System.err.println(userVos);
-        userVos.forEach(userVo -> users.forEach(user2 -> {
-            if (userVo.getUser().getName().equals(user2.getName())){
-                userVo.setUserName(user2.getName());
-            }
-        }));
+        userVos.forEach(
+                userVo -> users.forEach(user2 -> {
+                    if (userVo.getUser().getName().equals(user2.getName())) {
+                        userVo.setUserName(user2.getName());
+                    }
+                }));
         System.err.println(userVos);
     }
 }
